@@ -4,6 +4,7 @@
 
 import pandas as pd
 from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
 
 # Load California housing data
 data = fetch_california_housing()
@@ -14,3 +15,10 @@ df['Target'] = data.target  # Target is the median house value
 
 # Show the first 5 rows
 print(df.head())
+
+# Features and target
+X = df.drop('Target', axis=1)
+y = df['Target']
+
+# Split data (80% for training, 20% for testing)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
